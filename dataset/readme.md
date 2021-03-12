@@ -4,7 +4,7 @@ The dataset may be accessed through our basecamp: https://osf.io/shbe7/
 
 - The full dataset expands to a ~500GB file 
 - Data is housed in pieces on the Harvard Dataverse, a total of ~250GB in split, compressed form
-- Required DBMS: PostgreSQL 10.16 on x86_64-apple-darwin14.5.0, compiled by Apple LLVM version 7.0.2 (clang-700.1.81), 64-bit 
+- Required DBMS: PostgreSQL (tested on 10.16 on x86_64-apple-darwin14.5.0, compiled by Apple LLVM version 7.0.2 (clang-700.1.81), 64-bit)
 
 
 
