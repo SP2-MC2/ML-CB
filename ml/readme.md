@@ -48,6 +48,7 @@
 ```bash
 sudo apt-get install unzip -y
 sudo apt-get install wget -y
+sudo apt-get install git -y
 ```
 
 ### anaconda
@@ -61,7 +62,6 @@ sudo apt-get install wget -y
            bash Anaconda3-2020.02-Linux-x86_64.sh
            source ~/.bashrc
            conda info
-           cd /home
            ```
      
      2. should open a (base) conda environment (use the `/tmp` folder creation and the `source ~/.bashrc` in the end)
@@ -76,9 +76,9 @@ sudo apt-get install wget -y
 ### repository
 
 ```bash
-mkdir ml-cb
-cd ml-cb
+# cd into a directory location you prefer
 git clone https://github.com/SP2-MC2/ML-CB.git
+cd ML-CB
 ```
 
 ### data
@@ -86,7 +86,7 @@ git clone https://github.com/SP2-MC2/ML-CB.git
 1. get text corpora
 
    1. ```bash
-      cd ML-CB
+      cd ml
       wget https://osf.io/ep7d5/download
       unzip download 
       rm -r download
@@ -133,9 +133,10 @@ git clone https://github.com/SP2-MC2/ML-CB.git
 ### repository
 
 ```bash
-mkdir ml-cb
-cd ml-cb
+
+# cd into a directory you prefer 
 git clone https://github.com/SP2-MC2/ML-CB.git
+cd ML-CB
 conda install -c anaconda wget 
 ```
 
@@ -144,7 +145,7 @@ conda install -c anaconda wget
 1. get text corpora
 
    1. ```bash
-      cd ML-CB
+      cd ml
       wget https://osf.io/ep7d5/download
       unzip download 
       rm -r download
