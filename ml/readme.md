@@ -93,7 +93,7 @@ cd ML-CB
       cd data/TEXT
       ```
 
-2. get embedding pre-set weights
+2. get embedding pre-set weights (GloVe)
 
    1. ```bash
       wget https://osf.io/vshgb/download
@@ -151,7 +151,7 @@ conda install -c anaconda wget
       cd data/TEXT
       ```
 
-2. get embedding pre-set weights
+2. get embedding pre-set weights  (GloVe)
 
    1. ```bash
       wget https://osf.io/vshgb/download
@@ -239,6 +239,8 @@ python3 ml-cb.py --model embedding --corpus jsnice
   - `python3 ml-cb.py --model embedding --corpus plaintext`
 
 
+
+> to reproduce results from the paper, edit main.py to run for 5 times on each model and each corpus, then average the results from the five runs
 
 
 
