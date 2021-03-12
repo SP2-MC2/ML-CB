@@ -38,11 +38,23 @@ sudo apt-get install wget -y
 
 1. install anaconda 
      1. recommended: https://phoenixnap.com/kb/how-to-install-anaconda-ubuntu-18-04-or-20-04
+     
+        1. ```bash
+           cd /tmp
+           wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+           bash Anaconda3-2020.02-Linux-x86_64.sh
+           source ~/.bashrc
+           conda info
+           cd /home
+           ```
+     
      2. should open a (base) conda environment (use the `/tmp` folder creation and the `source ~/.bashrc` in the end)
 2. `conda install -c fastai -c pytorch -c anaconda fastai gh anaconda`
+   
    1. *☝️ this command may take a few minutes to finish* 
   3. downgrade fastai for CNN: `pip install fastai==1.0.61`
 4. `conda install tensorflow-mkl`
+   
    1. *☝️ this command may take a few minutes to finish*
 
 ### repository
