@@ -133,7 +133,6 @@ cd ML-CB
 ### repository
 
 ```bash
-
 # cd into a directory you prefer 
 git clone https://github.com/SP2-MC2/ML-CB.git
 cd ML-CB
