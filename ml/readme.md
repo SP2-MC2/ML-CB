@@ -16,10 +16,26 @@
 ## disclaimers
 
 - a computing instance geared toward machine learning, with high ram and sufficient space, is necessary to run these programs. Without sufficient RAM and disk space, the program (it is currently not optimized) will likely be killed. 
+
 - requires **python 3.7** ==> tested with python 3.7.9 (3.7.6 may also work)
+
 - preferred test method: Google's Compute Cloud (VM instance) 
+  
   - set a new VM to 8 CPUs (N2) with 350 GB RAM and 100GB disk space (us-central1-a), then follow the ubuntu steps for install 
+  
 - this code (and subsequently the install instructions) is setup to work only on CPUs; GPU would increase performance, but is not tested in this release
+
+  
+
+---
+
+<ol>
+  <li><p style="color: red">Install {Ubuntu or macOS}</p></li>
+  <li><p style="color: red">Sanity Check</p></li>
+  <li><p style="color: red">Run ML-CB</p></li>
+</ol> 
+
+---
 
 
 
