@@ -1,6 +1,6 @@
 # ML-CB: Machine Learning Canvas Block
 
-Artifact release for our PETS 2021 paper entitled *ML-CB: Machin*e Learning Canvas Block* 
+Artifact release for our PETS 2021 paper entitled *ML-CB: Machin*e Learning Canvas Block
 
 
 
