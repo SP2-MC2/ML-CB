@@ -50,7 +50,7 @@ sudo apt-get install wget -y
 ```bash
 mkdir ml-cb
 cd ml-cb
-git clone https://github.com/SP2-MC2/ML-CB_private.git
+git clone https://github.com/SP2-MC2/ML-CB.git
 ```
 
 ### data
@@ -58,6 +58,7 @@ git clone https://github.com/SP2-MC2/ML-CB_private.git
 1. get text corpora
 
    1. ```bash
+      cd ML-CB
       wget https://osf.io/ep7d5/download
       unzip download 
       rm -r download
@@ -106,7 +107,7 @@ git clone https://github.com/SP2-MC2/ML-CB_private.git
 ```bash
 mkdir ml-cb
 cd ml-cb
-git clone https://github.com/SP2-MC2/ML-CB_private.git
+git clone https://github.com/SP2-MC2/ML-CB.git
 conda install -c anaconda wget 
 ```
 
@@ -115,6 +116,7 @@ conda install -c anaconda wget
 1. get text corpora
 
    1. ```bash
+      cd ML-CB
       wget https://osf.io/ep7d5/download
       unzip download 
       rm -r download
