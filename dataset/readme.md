@@ -35,7 +35,7 @@ Tables (*fingerprinters* and *test_suite*) take the form of:
 ## Examples 
 
 ```sql
-select * from fingerprinters where initiator LIKE '%lenscrafters%' 
+select initiator, origin_url, unnest(URI) from fingerprinters where initiator LIKE '%lenscrafters%' 
 ```
 
 | initiator                     | origin_url                                                   | unnest origin_url                                            | manual_label |
