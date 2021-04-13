@@ -120,7 +120,7 @@ cd ML-CB
 
 1. install anaconda
    1. a full list of options -- https://repo.anaconda.com/archive/
-      1. recommended direct GUI download (**this is all you need**) : [Anaconda3-2020.02-MacOSX-x86_64.pkg](https://repo.anaconda.com/archive/Anaconda3-2020.02-MacOSX-x86_64.pkg)
+      1. recommended direct GUI download (**this is all you need**): [Anaconda3-2020.02-MacOSX-x86_64.pkg](https://repo.anaconda.com/archive/Anaconda3-2020.02-MacOSX-x86_64.pkg)
 2. use anaconda navigator to open a root (base) terminal (hit the play button in the environments tab)
    1. optionally, use any conda environment, just work within that environment
 3. `conda install -c pytorch -c fastai fastai` 
