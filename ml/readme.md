@@ -1,5 +1,7 @@
 # ML-CB: Install
 
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/SP2-MC2/ML-CB.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/SP2-MC2/ML-CB/context:python)
+
 - [disclaimers](#disclaimers)
 - [ubuntu](#ubuntu)
   * [basic packaages](#basic-packaages)
