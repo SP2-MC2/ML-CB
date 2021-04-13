@@ -33,7 +33,6 @@ import itertools
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import getpass
 import gc
 import argparse
 import pickle
@@ -65,7 +64,6 @@ from tensorflow.keras import Sequential
 from tensorflow.keras.layers import (
     Dense,
     Conv1D,
-    MaxPooling2D,
     Dropout,
     Activation,
     MaxPooling1D,
