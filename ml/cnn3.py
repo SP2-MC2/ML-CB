@@ -25,6 +25,8 @@ import fastai
 import warnings
 import os
 
+import pandas as pd
+
 # change if GPU available (tested only on CPU)
 fastai.torch_core.defaults.device = torch.device("cpu")
 # defaults.device = torch.device('cpu')

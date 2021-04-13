@@ -114,7 +114,7 @@ cd ML-CB
 
 ## macos
 
-> tested with  10.15 (11.2.2)
+> tested with  10.15 (catalina) and 11.2.2 (big sur)
 
 ### anaconda
 

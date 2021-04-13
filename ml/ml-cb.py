@@ -47,9 +47,9 @@ from sklearn.metrics import accuracy_score
 from sklearn.linear_model import SGDClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfTransformer
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.utils import resample
-from sklearn.preprocessing import LabelBinarizer, LabelEncoder
+from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
 from sklearn.metrics import f1_score as f1_score_sklearn
@@ -58,28 +58,20 @@ from sklearn.metrics import confusion_matrix
 from sklearn.utils import shuffle
 from sklearn.model_selection import KFold
 from sklearn import model_selection
-from sklearn.svm import OneClassSVM
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import make_scorer
 
 from tensorflow.keras import Sequential
 from tensorflow.keras.layers import (
     Dense,
-    Conv2D,
     Conv1D,
     MaxPooling2D,
-    Flatten,
     Dropout,
     Activation,
     MaxPooling1D,
     LSTM,
-    SpatialDropout1D,
-    Bidirectional,
-    GlobalMaxPool1D,
-    GRU,
-    GlobalAvgPool1D,
 )
-from tensorflow.keras.preprocessing import text, sequence
+from tensorflow.keras.preprocessing import text
 from tensorflow.keras.layers import Embedding
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras import utils
@@ -88,7 +80,6 @@ from tensorflow.keras.metrics import categorical_accuracy
 from tqdm.keras import TqdmCallback
 
 pd.set_option("chained_assignment", None)
-
 
 def save_model(model):
 
@@ -175,12 +166,10 @@ def number():
         number.num = 1
     return number.num
 
-
 svm_fold_f1 = []
 svm_fold_accuracy = []
 svm_fold_precision = []
 svm_fold_recall = []
-
 
 def set_n(obj):
     global svm_fold_f1
@@ -201,7 +190,6 @@ def set_n(obj):
         svm_fold_precision.append(obj["precision"])
         svm_fold_recall.append(obj["recall"])
         return svm_fold_f1, svm_fold_accuracy, svm_fold_precision, svm_fold_recall
-
 
 def classification_report_with_accuracy_score(y_test, y_pred):
     # print(classification_report(y_test, y_pred))
@@ -265,7 +253,6 @@ def plot_confusion_matrix(
 
     # plt.savefig(save)
 
-
 def visualize_accuracy(history, save_name):
     """
     Plots out the accuracy measures given a keras history object
@@ -281,8 +268,6 @@ def visualize_accuracy(history, save_name):
     plt.ylabel("accuracy")
     plt.legend(["train", "test"])
     # plt.show()
-    # plt.savefig(save_name)
-    # tikzplotlib.save("bow.tex")
 
     # extra visual for loss
     plt.plot(history.history["loss"])
@@ -331,12 +316,7 @@ def svm(df):
     to_drop = []
     for index, row in df.iterrows():
         if len(row["program"]) <= 100:
-            # print("\n\n===============")
-            # print(row['program'])
-            # print(df.index.get_loc(index))
             to_drop.append(df.index.get_loc(index))
-            # print(df.iloc[df.index.get_loc(index)])
-            # print("===============\n\n")
     df = df.drop(df.index[to_drop])
     print(df["label"].value_counts())
     print("---------------- done small programs (↑ after)")
@@ -356,7 +336,7 @@ def svm(df):
         df_majority = df[df.label == 0]
         df_minority = df[df.label == 1]
         df_majority_downsampled = resample(
-            df_majority, replace=False, n_samples=int(class_1 * 2), random_state=42
+            df_majority, replace=False, n_samples=int(class_1), random_state=42
         )
         df_downsampled = pd.concat([df_majority_downsampled, df_minority])
         data = df_downsampled
@@ -388,7 +368,6 @@ def svm(df):
         )
         skfold = StratifiedKFold(n_splits=10, shuffle=True)
         # each fold has 10% of data withheld for training
-        kfold = KFold(n_splits=3, shuffle=True)
         f1_score = model_selection.cross_val_score(
             sgd,
             x,
@@ -459,7 +438,6 @@ def svm(df):
                     print("pass here")
                     print(e)
                     # sys.exit()
-                    pass
 
             results[option] = {
                 "false_negative": false_negative,
@@ -467,15 +445,12 @@ def svm(df):
                 "true_positive": true_positive,
                 "true_negative": true_negative,
             }
-        # print("number incorrect", count, "FN", false_negative, "FP", false_positive,  "TP", true_positive, "TN", true_negative)
-        # print(count / len(result))
         print(results)
         fold_test_suite_results.append(results)
 
         print("\n\n==================== round complete ====================\n\n")
 
         print(fold_test_suite_results)
-        # print(overall_f1, overall_accuracy, overall_precision, overall_recall)
         return (
             overall_f1,
             overall_accuracy,
@@ -525,12 +500,7 @@ def BOW(data):
     to_drop = []
     for index, row in data.iterrows():
         if len(row["program"]) <= 100:
-            # print("\n\n===============")
-            # print(row['program'])
-            # print(data.index.get_loc(index))
             to_drop.append(data.index.get_loc(index))
-            # print(data.iloc[data.index.get_loc(index)])
-            # print("===============\n\n")
     data = data.drop(data.index[to_drop])
     print(data["label"].value_counts())
     print("---------------- done small programs (↑ after)")
@@ -546,10 +516,8 @@ def BOW(data):
     overall_precision = []
     overall_recall = []
     overall_kappa = []
-    overall_auc = []
     overall_matrix = []
     overall_test_suite_results = []
-    f1 = []
     for i in range(1):
         # quick shuffle
         data = shuffle(data)
@@ -572,7 +540,6 @@ def BOW(data):
 
         number_of_splits = 10
         skfold = StratifiedKFold(n_splits=number_of_splits, shuffle=True)
-        kfold = KFold(n_splits=3, shuffle=True)
         fold_f1 = []
         fold_accuracy = []
         fold_precision = []
@@ -580,8 +547,6 @@ def BOW(data):
         fold_kappa = []
         fold_matrix = []
         fold_test_suite_results = []
-        fold_scores = []
-        fold_obfuscate_error_percent = []
         for train_ix, test_ix in skfold.split(x, y):
 
             ####################################################################
@@ -689,7 +654,6 @@ def BOW(data):
             print("\n\ntest suite\n\n")
 
             chunksize = 500000000000000
-            username = getpass.getuser()
             test_suite = "data/TEXT/test_suite.csv"
 
             for chunk in pd.read_csv(test_suite, chunksize=chunksize):
@@ -713,8 +677,6 @@ def BOW(data):
                     true_positive = 0
 
                     for index, row in result.iterrows():
-
-                        # if row['origin_url'] in test_open_wpm:
 
                         tester = row[option]
                         x_predict_array = [tester]
@@ -740,7 +702,6 @@ def BOW(data):
                             print("pass here")
                             print(e)
                             # sys.exit()
-                            pass
 
                     results[option] = {
                         "false_negative": false_negative,
@@ -821,12 +782,7 @@ def embedding(data):
     to_drop = []
     for index, row in data.iterrows():
         if len(row["program"]) <= 100:
-            # print("\n\n===============")
-            # print(row['program'])
-            # print(data.index.get_loc(index))
             to_drop.append(data.index.get_loc(index))
-            # print(data.iloc[data.index.get_loc(index)])
-            # print("===============\n\n")
     data.drop(data.index[to_drop], inplace=True)
     print(data["label"].value_counts())
     print("---------------- done small programs (↑ after)")
@@ -900,10 +856,6 @@ def embedding(data):
 
             print("---------------- starting encoding")
             encoded_docs = tokenize.texts_to_sequences(train_program)
-            # print("done tokenizing train")
-            # tokenizer = text.Tokenizer(num_words=max_words, char_level=False)
-            # tokenizer.fit_on_texts(test_program) # only fit on train
-            # vocab_size = len(tokenizer.word_index) + 1
             encoded_docs_test = tokenize.texts_to_sequences(test_program)
             print("---------------- done encoding")
 
@@ -917,17 +869,6 @@ def embedding(data):
                 coefs = np.asarray(values[-300:], dtype="float32")
                 embeddings_index[word] = coefs
             f.close()
-            # f = open(r'data/TEXT/glove.840B.300d.txt', encoding='utf8')
-            # for line in f:
-            #     values = line.split()
-            #     word = values[0]
-            #     try:
-            #         coefs = np.asarray(values[1:], dtype='float32')
-            #     except Exception as e:
-            #         print(e)
-            #         pass
-            #     embeddings_index[word] = coefs
-            # f.close()
             embedding_matrix = np.zeros((vocab_size, 300))
             for word, index in tokenize.word_index.items():
                 if index > vocab_size - 1:
@@ -940,8 +881,9 @@ def embedding(data):
             print("---------------- done GloVe")
 
             ## add padding
-            # max_length = int(vocab_size * .001)
-            max_length = 1000  # for paper
+            # max_length = int(vocab_size * .001) # testing
+            max_length = 1000  # performance on adversarial perspective
+            # max_length = 100  # performance on test suite
             print("---------------- starting padding")
             padded_docs = pad_sequences(encoded_docs, maxlen=max_length, padding="post")
             padded_docs_test = pad_sequences(
@@ -966,6 +908,7 @@ def embedding(data):
             print("y train", len(y_train), "y test", len(y_test))
 
             epochs = 10
+
             ## model2 architecture
             model = Sequential()
             model.add(
@@ -1001,7 +944,6 @@ def embedding(data):
                 metrics=[categorical_accuracy],
             )
             # fit the model
-            # callback = EarlyStopping(monitor='val_categorical_accuracy', mode='max', min_delta=1)
             history = model.fit(
                 padded_docs,
                 y_train,
@@ -1059,7 +1001,6 @@ def embedding(data):
             print("\n\ntest suite\n\n")
 
             chunksize = 500000000000000
-            username = getpass.getuser()
             test_suite = "data/TEXT/test_suite.csv"
 
             for chunk in pd.read_csv(test_suite, chunksize=chunksize):
@@ -1112,7 +1053,6 @@ def embedding(data):
                             print("pass here")
                             print(e)
                             # sys.exit()
-                            pass
 
                     results[option] = {
                         "false_negative": false_negative,
