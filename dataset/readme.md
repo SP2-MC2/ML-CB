@@ -8,7 +8,7 @@ The dataset may be accessed through our basecamp: https://osf.io/shbe7/
 
 
 
-## install
+## Install
 
 1. download all .sql files (as a large, single .zip file) 
 2. unzip that large file 
@@ -19,7 +19,7 @@ The dataset may be accessed through our basecamp: https://osf.io/shbe7/
 
 
 
-## table information 
+## Table Information 
 
 Tables (*fingerprinters* and *test_suite*) take the form of:
 
